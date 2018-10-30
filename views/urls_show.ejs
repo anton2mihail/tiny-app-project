@@ -4,11 +4,27 @@
 <% include ./partials/_header %>
 
 <body>
-  <h1>URL Chosen</h1>
-  <h2>
-    <%= shortURL %> ==>
-    <%= longURL %>
-  </h2>
+
+  <div class="card" style="width: fit-content;margin:auto;margin-top:5%;">
+    <div class="card-body">
+      <h5 class="card-title">Url Chosen</h5>
+      <p class="card-text">
+        <%= shortURL %> ==>
+        <%= longURL %>
+        <form method="POST" action="/urls/<%= shortURL %>" style="display:inline;">
+          <div class="input-group mb-3">
+            <input class='form-control' type='text' name='newURL' value="<%= longURL %>" style="width:auto;">
+            </input>
+            <!-- TODO: EDIT WITH OF INPUT SO THAT IT FITS CONTENT -->
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-warning">Update</button>
+            </div>
+          </div>
+        </form>
+
+      </p>
+    </div>
+  </div>
 </body>
 
 </html>
