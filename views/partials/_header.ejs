@@ -13,11 +13,16 @@
 </form>
 <% }else{ %>
 <form class='bstCenter' method='POST' action="/logout">
-  <div class="form-group">
-    <div class="alert alert-primary" role="alert">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Logged in as: </span>
+    </div>
+    <div class="form-control">
       <%= username %>
     </div>
-    <button type="submit" class="btn btn-warning bstCenterButton">Logout</button>
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-warning bstInline">Logout</button>
+    </div>
   </div>
 </form>
 <% } %>

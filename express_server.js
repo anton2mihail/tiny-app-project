@@ -67,7 +67,9 @@ app.get("/urls/new", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-  generateRandomUrl(req.body.longURL);
+  if (req.body.longURL != "") {
+    generateRandomUrl(req.body.longURL);
+  }
   res.redirect("/urls");
 });
 
