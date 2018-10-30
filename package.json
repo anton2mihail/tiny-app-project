@@ -10,7 +10,9 @@
   "author": "Toni Lachmaniucu",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.6.1",
+    "ejs-lint": "^0.3.0",
     "express": "^4.16.4"
   },
   "devDependencies": {

@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html>
 
-<% include ./partials/_header %>
+<% include ./partials/_head %>
 
 <body>
 
-  <div class="card" style="width:fit-content;margin:auto;margin-top:5%;">
+  <% include ./partials/_nav %>
+
+  <% include ./partials/_header %>
+  <div class="card bstCenter" style="margin-top:5%;">
     <div class="card-header">
       Featured
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush" style="width:30em;">
       <% Object.entries(urls).forEach(el =>{ %>
       <li class="list-group-item">
         <%= el[0] %> =>
         <%= el[1] %>
-        <button class="btn btn-warning" style="display:inline;">
+        <button class="btn btn-warning bstInline">
           <a style="text-decoration:none;color:white;" href='/urls/<%= el[0] %>'>Edit</a>
         </button>
-        <form method="POST" action="/urls/<%= el[0] %>/delete" style="display:inline;"><button class="btn btn-danger">DELETE</button></form>
+        <form class='bstInline' method="POST" action="/urls/<%= el[0] %>/delete">
+          <button class="btn btn-danger">DELETE</button>
+        </form>
       </li>
-      <% })%>
+      <% }) %>
+      <li class="list-group-item">
+        <% if(username ){ %>
+        <% if(!newUrl){ %>
+        <form method="GET" action="/urls/new">
+          <button type="submit" class="btn btn-info">New URL</button>
+        </form>
+        <% } else if (newUrl == 't') { %>
+        <% include ./partials/_new %>
+        <% } %>
+        <% } %>
+      </li>
     </ul>
   </div>
 </body>
