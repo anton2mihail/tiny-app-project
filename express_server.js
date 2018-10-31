@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bd = require("body-parser");
 const cookieParser = require("cookie-parser");
-const PORT = 8080; // default port 8080
+const PORT = 80; // default port 8080
 
 let urlDatabase = {
   b2xVn2: "http://www.lighthouselabs.ca",
