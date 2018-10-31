@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const bd = require("body-parser");
 const cookieParser = require("cookie-parser");
-const PORT = 80; // default port 8080
+const path = require("path");
+const PORT = process.env.PORT || 5000; // default port 8080
 
 let urlDatabase = {
   b2xVn2: "http://www.lighthouselabs.ca",
@@ -21,7 +22,8 @@ app.use(bd.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.redirect("/urls");
