@@ -1,8 +1,6 @@
 {
-  "users": {
-    "0": {
-      "username": "admin",
-      "password": "root"
-    }
+  "admin@ad.com": {
+    "password": "root",
+    "urls": ["b2xVn2", "9sm5xK"]
   }
 }

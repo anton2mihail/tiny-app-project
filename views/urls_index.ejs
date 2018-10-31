@@ -13,14 +13,14 @@
       Featured
     </div>
     <ul class="list-group list-group-flush" style="width:30em;">
-      <% Object.entries(urls).forEach(el =>{ %>
+      <% Object.keys(urls).forEach(el =>{ %>
       <li class="list-group-item">
-        <%= el[0] %> =>
-        <%= el[1] %>
+        <%= el %> =>
+        <%= urls[el].url %>
         <button class="btn btn-warning bstInline">
-          <a style="text-decoration:none;color:white;" href='/urls/<%= el[0] %>'>Edit</a>
+          <a style="text-decoration:none;color:white;" href='/urls/<%= el %>'>Edit</a>
         </button>
-        <form class='bstInline' method="POST" action="/urls/<%= el[0] %>/delete">
+        <form class='bstInline' method="POST" action="/urls/<%= el %>/delete">
           <button class="btn btn-danger">DELETE</button>
         </form>
       </li>

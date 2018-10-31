@@ -1,22 +1,25 @@
 const db_urls = require("./urls_db.json");
 
-function remove(short) {
-  const idx = Object.values(db_urls["urls"]).indexOf(findUrl(short));
-  if (idx) {
-    delete db_urls["urls"][idx.toString()];
-    console.log(db_urls["urls"][idx.toString()]);
-    return true;
-  }
-  return false;
-}
-function findUrl(short) {
-  const urlFound = Object.values(db_urls["urls"]).find(el => {
-    return el.short === short;
-  });
-  if (urlFound.short === short) {
-    return urlFound;
-  }
-  return undefined;
+const shortenUrl = params => {
+  let r = Math.random()
+    .toString(36)
+    .substring(1, 6);
+  return r;
+};
+
+function create(url, user) {
+  const newIdx = Object.keys(db_urls["urls"]).length;
+  db_urls["urls"][newIdx] = {
+    url: url,
+    short: shortenUrl(url)
+  };
+  // crud_users.update(user, db_urls["urls"][newIdx].short);
 }
 
-console.log(remove("9sm5xK"));
+console.log(
+  create(
+    "https://stackoverflow.com/questions/7163061/is-there-a-require-for-json-in-node-js",
+    "admin@ad.com"
+  )
+);
+console.log(db_urls);
