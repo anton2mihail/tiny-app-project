@@ -13,11 +13,18 @@ This is simply a fully functional url shortening serivce, that implements a expr
 ```
 
 ## Built With
-Express - Lightweight server framework
-Ejs - Templating engine
+* Express - Lightweight server framework
+* Ejs - Templating engine
 
 ## Authors
 Toni Lachmaniucu
 
-# Example
-
+# Screenshots
+### Login Page
+![alt text](https://github.com/anton2mihail/tiny-app-project/blob/master/public/examples/LoginPage.png "Login Page")
+### Homepage
+![alt text](https://github.com/anton2mihail/tiny-app-project/blob/master/public/examples/HomePage.png "Homepage")
+### Page where you edit urls
+![alt text](https://github.com/anton2mihail/tiny-app-project/blob/master/public/examples/EditPage.png "Edit Page")
+### Page where you create new urls
+![alt text](https://github.com/anton2mihail/tiny-app-project/blob/master/public/examples/NewUrl.png "Create New Url Page")
