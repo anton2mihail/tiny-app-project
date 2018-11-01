@@ -10,9 +10,18 @@
         <a class="nav-link" href="/urls/new">New URL</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class='marginTop' method='POST' action="/logout">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Logged in as: </span>
+        </div>
+        <div class="form-control">
+          <%= username %>
+        </div>
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-warning bstInline">Logout</button>
+        </div>
+      </div>
     </form>
   </div>
 </nav>

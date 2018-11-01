@@ -12,17 +12,4 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <% }else{ %>
-<form class='bstCenter' method='POST' action="/logout">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Logged in as: </span>
-    </div>
-    <div class="form-control">
-      <%= username %>
-    </div>
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-warning bstInline">Logout</button>
-    </div>
-  </div>
-</form>
 <% } %>
