@@ -39,27 +39,16 @@ app.use("/register", register);
 app.use("/login", login);
 
 app.post("/logout", (req, res) => {
-<<<<<<< HEAD
-  res.clearCookie("user_id");
-=======
   req.session = null;
->>>>>>> feature/unique
   res.redirect("/login");
 });
 
 app.get("/urls", (req, res) => {
-<<<<<<< HEAD
-  if (req.cookies["user_id"]) {
-    res.render("urls_index", {
-      username: req.cookies["user_id"],
-      urls: urls.getUrlsPerUser(req.cookies["user_id"]),
-=======
   console.log(req.session);
   if (req.session.isPopulated) {
     res.render("urls_index", {
       username: req.session.user_id,
       urls: urls.getUrlsPerUser(req.session.user_id),
->>>>>>> feature/unique
       newUrl: null,
       publicUrl: PUBLIC_URL
     });
@@ -70,29 +59,17 @@ app.get("/urls", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-<<<<<<< HEAD
-  if (req.body.url != "") {
-    urls.create(req.body.url, req.cookies['user_id']);
-=======
   if (req.body.url != "" && !req.session.isChanged) {
     urls.create(req.body.url, req.session.user_id);
->>>>>>> feature/unique
   }
   res.redirect("/urls");
 });
 
 app.get("/urls/new", (req, res) => {
-<<<<<<< HEAD
-  if (req.cookies["user_id"]) {
-    res.render("urls_index", {
-      username: req.cookies["user_id"],
-      urls: urls.getUrlsPerUser(req.cookies["user_id"]),
-=======
   if (req.session.user_id) {
     res.render("urls_index", {
       username: req.session.user_id,
       urls: urls.getUrlsPerUser(req.session.user_id),
->>>>>>> feature/unique
       newUrl: "t",
       publicUrl: PUBLIC_URL
     });
@@ -103,28 +80,18 @@ app.get("/urls/new", (req, res) => {
 });
 
 app.post("/urls/:id/delete", (req, res) => {
-<<<<<<< HEAD
-  users.removeUrl(req.cookies['user_id'], req.params.id);
-=======
   if (users.hasUrl(req.session.user_id, req.params.id)) {
     users.removeUrl(req.session.user_id, req.params.id);
   } else {
     res.sendStatus(403);
   }
->>>>>>> feature/unique
   res.redirect("/urls");
 });
 
 app.get("/urls/:shortURL", (req, res) => {
-<<<<<<< HEAD
-  if (req.cookies["user_id"]) {
-    let templateVars = {
-      username: req.cookies["user_id"],
-=======
   if (req.session.user_id && users.hasUrl(req.session.user_id, req.params.shortURL)) {
     let templateVars = {
       username: req.session.user_id,
->>>>>>> feature/unique
       shortURL: req.params.shortURL,
       longURL: urls.findUrl(req.params.shortURL)
     };
