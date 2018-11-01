@@ -16,7 +16,6 @@ router.post("/", (req, res) => {
     req.session.user_id = req.body.username;
     res.redirect("/urls");
   } else {
-    res.sendStatus(403);
     res.redirect("/register");
   }
 });

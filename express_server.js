@@ -20,13 +20,6 @@ app.use(cookieSession({
   keys: [COOKIE_KEY]
 }));
 
-//app.use(session({
-//  secret: COOKIE_KEY,
-//  resave: false,
-//  saveUninitialized: false,
-//  cookie: {}
-//}))
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
@@ -53,7 +46,6 @@ app.get("/urls", (req, res) => {
       publicUrl: PUBLIC_URL
     });
   } else {
-    res.sendStatus(403);
     res.redirect("/login");
   }
 });
@@ -74,7 +66,6 @@ app.get("/urls/new", (req, res) => {
       publicUrl: PUBLIC_URL
     });
   } else {
-    res.sendStatus(403);
     res.redirect("/login");
   }
 });
@@ -82,8 +73,6 @@ app.get("/urls/new", (req, res) => {
 app.post("/urls/:id/delete", (req, res) => {
   if (users.hasUrl(req.session.user_id, req.params.id)) {
     users.removeUrl(req.session.user_id, req.params.id);
-  } else {
-    res.sendStatus(403);
   }
   res.redirect("/urls");
 });
@@ -97,7 +86,6 @@ app.get("/urls/:shortURL", (req, res) => {
     };
     res.render("urls_show", templateVars);
   } else {
-    res.sendStatus(403);
     res.redirect("/login");
   }
 });
