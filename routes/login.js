@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-const { urls, users } = require("./dbs/db_crud");
+const express = require("express");
+const router = express.Router();
+const { urls, users } = require("../dbs/db_crud");
 
 router.get("/", (req, res) => {
   res.render("urls_login", {
@@ -8,7 +8,8 @@ router.get("/", (req, res) => {
   });
 });
 router.post("/", (req, res) => {
-  if (users.isUser(req.body.username)) {
+  console.log(req.body.password + ' This is the password');
+  if (users.isUser(req.body.username, req.body.password)) {
     res.cookie("username", req.body.username);
     res.redirect("/urls");
   } else {

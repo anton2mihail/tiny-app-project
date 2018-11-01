@@ -6,7 +6,11 @@ const path = require("path");
 const { urls, users } = require("./dbs/db_crud");
 const register = require("./routes/register");
 const login = require("./routes/login");
+const redirect = require('./routes/short-redirects');
 const PORT = process.env.PORT || 5000; // default port 8080
+const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:" + PORT;
+
+//Admin Password 'root'
 
 app.use(bd.json());
 app.use(bd.urlencoded({ extended: true }));
@@ -19,23 +23,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.redirect("/urls");
 });
-
+app.use('/go', redirect);
 app.use("/register", register);
 app.use("/login", login);
-
-app.get("/login", (req, res) => {
-  res.render("urls_login", {
-    username: req.cookies["username"]
-  });
-});
-app.post("/login", (req, res) => {
-  if (users.isUser(req.body.username)) {
-    res.cookie("username", req.body.username);
-    res.redirect("/urls");
-  } else {
-    res.redirect("/register");
-  }
-});
 
 app.post("/logout", (req, res) => {
   res.clearCookie("username");
@@ -46,8 +36,9 @@ app.get("/urls", (req, res) => {
   if (req.cookies["username"]) {
     res.render("urls_index", {
       username: req.cookies["username"],
-      urls: urls.all(),
-      newUrl: null
+      urls: urls.getUrlsPerUser(req.cookies["username"]),
+      newUrl: null,
+      publicUrl: PUBLIC_URL
     });
   } else {
     res.redirect("/login");
@@ -56,7 +47,7 @@ app.get("/urls", (req, res) => {
 
 app.post("/urls", (req, res) => {
   if (req.body.url != "") {
-    urls.create(req.body.url);
+    urls.create(req.body.url, req.cookies['username']);
   }
   res.redirect("/urls");
 });
@@ -65,8 +56,9 @@ app.get("/urls/new", (req, res) => {
   if (req.cookies["username"]) {
     res.render("urls_index", {
       username: req.cookies["username"],
-      urls: urls.all(),
-      newUrl: "t"
+      urls: urls.getUrlsPerUser(req.cookies["username"]),
+      newUrl: "t",
+      publicUrl: PUBLIC_URL
     });
   } else {
     res.redirect("/login");
@@ -74,7 +66,7 @@ app.get("/urls/new", (req, res) => {
 });
 
 app.post("/urls/:id/delete", (req, res) => {
-  urls.remove(req.params.id);
+  users.removeUrl(req.cookies['username'], req.params.id);
   res.redirect("/urls");
 });
 

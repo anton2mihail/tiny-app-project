@@ -1,8 +1,11 @@
 const db_urls = require("./data/urls_db.json");
 const db_users = require("./data/urls_users_db.json");
+const bcrypt = require('bcrypt');
+require("dotenv").config();
+const KEY = process.env.SECRET_KEY;
 
-const shortenUrl = params => {
-  let encoded = Buffer.from(params).toString("base64");
+const shortenUrl = url => {
+  let encoded = (Math.random() * 1e16).toString(36);
   return encoded;
 };
 
@@ -37,6 +40,20 @@ const crud_urls = {
     }
     return false;
   },
+  getUrlsPerUser(username) {
+    let obj = {};
+    if (db_users[username]) {
+      if (db_users[username].urls) {
+        db_users[username].urls.forEach(el => {
+          obj[el] = {
+            url: db_urls[el].url
+          }
+        });
+        return obj;
+      }
+    }
+    return undefined;
+  },
   all() {
     return db_urls;
   }
@@ -44,13 +61,22 @@ const crud_urls = {
 
 const crud_users = {
   create(username, password) {
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(password, salt);
+    console.log(hash);
     db_users[username] = {
-      password: password,
+      password: hash,
       urls: ["b2xVn2", "9sm5xK"]
     };
   },
-  isUser(username) {
-    return !!db_users[username];
+  isUser(username, password) {
+    let result = '';
+    if (db_users[username]) {
+      result = bcrypt.compareSync(password, db_users[username].password);
+      console.log(result);
+      return result;
+    }
+    return false;
   },
   findUser(username) {
     if (db_users[username]) {
@@ -61,6 +87,14 @@ const crud_users = {
   addNewUrl(username, newUrl) {
     if (db_users[username]) {
       db_users[username].urls.push(newUrl);
+      return true;
+    }
+    return false;
+  },
+  removeUrl(username, url) {
+    if (db_users[username].urls.includes(url)) {
+      let idx = db_users[username].urls.indexOf(url);
+      db_users[username].urls.splice(idx, 1);
       return true;
     }
     return false;

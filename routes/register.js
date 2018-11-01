@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-const { urls, users } = require("./dbs/db_crud");
+const express = require("express");
+const router = express.Router();
+const { urls, users } = require("../dbs/db_crud");
 
 router.get("/", (req, res) => {
   res.render("urls_register");

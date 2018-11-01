@@ -1,6 +1,9 @@
 {
   "admin@ad.com": {
-    "password": "root",
-    "urls": ["b2xVn2", "9sm5xK"]
+    "password": "$2a$10$H4w3QRp2Y9ynY0UVhJdEV.UjOIr1HBl1RpvmsmUS4QTEdoGFX0pfS",
+    "urls": [
+      "b2xVn2",
+      "9sm5xK"
+    ]
   }
 }

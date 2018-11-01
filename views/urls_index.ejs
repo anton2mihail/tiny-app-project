@@ -13,9 +13,11 @@
       Featured
     </div>
     <ul class="list-group list-group-flush" style="width:30em;">
+      <% if(urls){ %>
       <% Object.keys(urls).forEach(el =>{ %>
       <li class="list-group-item">
-        <%= el %> =>
+        <a href='/go/<%= el %>'>
+          <%= publicUrl+'/go/'+ el %></a> =>
         <%= urls[el].url %>
         <button class="btn btn-warning bstInline">
           <a style="text-decoration:none;color:white;" href='/urls/<%= el %>'>Edit</a>
@@ -25,6 +27,7 @@
         </form>
       </li>
       <% }) %>
+      <% } %>
       <li class="list-group-item" style="text-align:center;">
         <% if(username ){ %>
         <% if(!newUrl){ %>
