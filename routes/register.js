@@ -9,12 +9,8 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   users.create(req.body.username, req.body.password);
-<<<<<<< HEAD
-  res.cookie("user_id", req.body.username);
-=======
   req.session.session_id = createUnique();
   req.session.user_id = req.body.username;
->>>>>>> feature/unique
   res.redirect("/");
 });
 
