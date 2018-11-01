@@ -1,6 +1,8 @@
 # Tiny App Project
 This is simply a fully functional url shortening serivce, that implements a express backend, and a uses ejs for templating. It also implements user accounts so that only the user who created the url actually 'owns' the url. This only means that they are the only ones capable of editing them. Anyone can use the urls created by this service, ie. youre free to share them with your friends.
 
+# NOW LIVE ON HEROKU : [Tiny Url](https://tiny-app-project.herokuapp.com/login)
+
 ## Dependencies
 ```json
     "bcrypt": "^2.0.0",
