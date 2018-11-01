@@ -4,8 +4,10 @@
 <% include ./partials/_head %>
 
 <body>
+
   <% include ./partials/_nav %>
-  <div class="card" style="width: fit-content;margin:auto;margin-top:5%;">
+
+  <div class="card showCard">
     <div class="card-body">
       <h5 class="card-title">Url Chosen</h5>
       <p class="card-text">
@@ -15,7 +17,6 @@
           <div class="input-group mb-3">
             <input class='form-control' type='text' name='newURL' value="<%= longURL %>" style="width:auto;">
             </input>
-            <!-- TODO: EDIT WITH OF INPUT SO THAT IT FITS CONTENT -->
             <div class="input-group-append">
               <button type="submit" class="btn btn-warning">Update</button>
             </div>

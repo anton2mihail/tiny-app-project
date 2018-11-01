@@ -1,0 +1,25 @@
+@keyframes slide {
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(0, 1000px, 0); /* The image width */
+  }
+}
+body{
+  background-image: url("./bg.png");
+  background-size: cover;
+  /*animation: slide 60s linear infinite;*/
+}
+label{
+  color:white;
+}
+
+ h1 {
+	margin: 1em 0 0.5em 0;
+	font-weight: 100;
+	text-transform: uppercase;
+	color: #c1e2dc;
+	font-size: 58px;
+	line-height: 54px;
+}

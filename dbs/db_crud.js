@@ -62,7 +62,6 @@ const crud_users = {
   create(username, password) {
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
-    console.log(hash);
     db_users[username] = {
       password: hash,
       urls: ["b2xVn2", "9sm5xK"]
@@ -84,7 +83,6 @@ const crud_users = {
     let result = '';
     if (db_users[username]) {
       result = bcrypt.compareSync(password, db_users[username].password);
-      console.log(result);
       return result;
     }
     return false;

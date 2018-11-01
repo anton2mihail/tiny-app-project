@@ -8,10 +8,10 @@ const register = require("./routes/register");
 const login = require("./routes/login");
 require('dotenv').config();
 const redirect = require('./routes/short-redirects');
-const PORT = process.env.PORT || 5000; // default port 8080
+const PORT = process.env.PORT || 5000; // default port 5000
 const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:" + PORT;
 const COOKIE_KEY = process.env.COOKIE_KEY;
-//Admin Password 'root'
+
 
 app.use(bd.json());
 app.use(bd.urlencoded({ extended: true }));
@@ -37,7 +37,6 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/urls", (req, res) => {
-  console.log(req.session);
   if (req.session.isPopulated) {
     res.render("urls_index", {
       username: req.session.user_id,
