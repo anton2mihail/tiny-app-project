@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   users.create(req.body.username, req.body.password);
-  res.cookie("username", req.body.username);
+  res.cookie("user_id", req.body.username);
   res.redirect("/");
 });
 

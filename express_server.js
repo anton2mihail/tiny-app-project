@@ -28,15 +28,15 @@ app.use("/register", register);
 app.use("/login", login);
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("username");
+  res.clearCookie("user_id");
   res.redirect("/login");
 });
 
 app.get("/urls", (req, res) => {
-  if (req.cookies["username"]) {
+  if (req.cookies["user_id"]) {
     res.render("urls_index", {
-      username: req.cookies["username"],
-      urls: urls.getUrlsPerUser(req.cookies["username"]),
+      username: req.cookies["user_id"],
+      urls: urls.getUrlsPerUser(req.cookies["user_id"]),
       newUrl: null,
       publicUrl: PUBLIC_URL
     });
@@ -47,16 +47,16 @@ app.get("/urls", (req, res) => {
 
 app.post("/urls", (req, res) => {
   if (req.body.url != "") {
-    urls.create(req.body.url, req.cookies['username']);
+    urls.create(req.body.url, req.cookies['user_id']);
   }
   res.redirect("/urls");
 });
 
 app.get("/urls/new", (req, res) => {
-  if (req.cookies["username"]) {
+  if (req.cookies["user_id"]) {
     res.render("urls_index", {
-      username: req.cookies["username"],
-      urls: urls.getUrlsPerUser(req.cookies["username"]),
+      username: req.cookies["user_id"],
+      urls: urls.getUrlsPerUser(req.cookies["user_id"]),
       newUrl: "t",
       publicUrl: PUBLIC_URL
     });
@@ -66,14 +66,14 @@ app.get("/urls/new", (req, res) => {
 });
 
 app.post("/urls/:id/delete", (req, res) => {
-  users.removeUrl(req.cookies['username'], req.params.id);
+  users.removeUrl(req.cookies['user_id'], req.params.id);
   res.redirect("/urls");
 });
 
 app.get("/urls/:shortURL", (req, res) => {
-  if (req.cookies["username"]) {
+  if (req.cookies["user_id"]) {
     let templateVars = {
-      username: req.cookies["username"],
+      username: req.cookies["user_id"],
       shortURL: req.params.shortURL,
       longURL: urls.findUrl(req.params.shortURL)
     };
