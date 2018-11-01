@@ -73,10 +73,8 @@ const crud_users = {
     let res = false;
     if (db_users[username]) {
       if (db_users[username].urls) {
-        db_users[username].urls.forEach(el => {
-          if (el === short) {
-            res = true;
-          }
+        res = db_users[username].urls.find(el => {
+          return el === short;
         });
       }
     }

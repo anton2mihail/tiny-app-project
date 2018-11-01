@@ -86,7 +86,7 @@ app.get("/urls/:shortURL", (req, res) => {
     };
     res.render("urls_show", templateVars);
   } else {
-    res.redirect("/login");
+    res.redirect("/urls");
   }
 });
 
