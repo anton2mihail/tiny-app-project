@@ -1,8 +1,7 @@
 const db_urls = require("./data/urls_db.json");
 const db_users = require("./data/urls_users_db.json");
 const bcrypt = require('bcrypt');
-require("dotenv").config();
-const KEY = process.env.SECRET_KEY;
+
 
 const shortenUrl = url => {
   let encoded = (Math.random() * 1e16).toString(36);
@@ -10,12 +9,12 @@ const shortenUrl = url => {
 };
 
 const crud_urls = {
-  create(url, user) {
+  create(url, username) {
     const short = shortenUrl(url);
     db_urls[short] = {
       url: url
     };
-    crud_users.addNewUrl(user, short);
+    crud_users.addNewUrl(username, short);
   },
   isUrl(short) {
     return !!db_urls[short];
@@ -68,6 +67,20 @@ const crud_users = {
       password: hash,
       urls: ["b2xVn2", "9sm5xK"]
     };
+    return true;
+  },
+  hasUrl(username, short) {
+    let res = false;
+    if (db_users[username]) {
+      if (db_users[username].urls) {
+        db_users[username].urls.forEach(el => {
+          if (el === short) {
+            res = true;
+          }
+        });
+      }
+    }
+    return res;
   },
   isUser(username, password) {
     let result = '';
