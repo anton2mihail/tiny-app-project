@@ -69,6 +69,19 @@ const crud_users = {
     };
     return true;
   },
+  hasUrl(username, short) {
+    let res = false;
+    if (db_users[username]) {
+      if (db_users[username].urls) {
+        db_users[username].urls.forEach(el => {
+          if (el === short) {
+            res = true;
+          }
+        });
+      }
+    }
+    return res;
+  },
   isUser(username, password) {
     let result = '';
     if (db_users[username]) {

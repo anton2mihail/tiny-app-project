@@ -12,14 +12,11 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   // TODO: SEND PASSWORD SECURELY THROUGH HTTPS
   if (users.isUser(req.body.username, req.body.password)) {
-    console.log(req.session);
-    req.session.session_id = 'hello';
-    console.log(req.session);
+    req.session.session_id = createUnique();
     req.session.user_id = req.body.username;
-    //aconsole.log(req.session);
-    //res.redirect("/urls");
-    res.sendStatus('200');
+    res.redirect("/urls");
   } else {
+    res.sendStatus(403);
     res.redirect("/register");
   }
 });

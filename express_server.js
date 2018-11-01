@@ -6,12 +6,11 @@ const path = require("path");
 const { urls, users } = require("./dbs/db_crud");
 const register = require("./routes/register");
 const login = require("./routes/login");
-const session = require('express-session');
+require('dotenv').config();
 const redirect = require('./routes/short-redirects');
 const PORT = process.env.PORT || 5000; // default port 8080
 const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:" + PORT;
 const COOKIE_KEY = process.env.COOKIE_KEY;
-
 //Admin Password 'root'
 
 app.use(bd.json());
@@ -49,12 +48,12 @@ app.get("/urls", (req, res) => {
   if (req.session.isPopulated) {
     res.render("urls_index", {
       username: req.session.user_id,
-      // TODO:  MAKE SURE THAT DB METHOD USES UNIQUE FOR SEARCH
       urls: urls.getUrlsPerUser(req.session.user_id),
       newUrl: null,
       publicUrl: PUBLIC_URL
     });
   } else {
+    res.sendStatus(403);
     res.redirect("/login");
   }
 });
@@ -75,17 +74,22 @@ app.get("/urls/new", (req, res) => {
       publicUrl: PUBLIC_URL
     });
   } else {
+    res.sendStatus(403);
     res.redirect("/login");
   }
 });
 
 app.post("/urls/:id/delete", (req, res) => {
-  users.removeUrl(req.session.user_id, req.params.id);
+  if (users.hasUrl(req.session.user_id, req.params.id)) {
+    users.removeUrl(req.session.user_id, req.params.id);
+  } else {
+    res.sendStatus(403);
+  }
   res.redirect("/urls");
 });
 
 app.get("/urls/:shortURL", (req, res) => {
-  if (req.session.user_id) {
+  if (req.session.user_id && users.hasUrl(req.session.user_id, req.params.shortURL)) {
     let templateVars = {
       username: req.session.user_id,
       shortURL: req.params.shortURL,
@@ -93,6 +97,7 @@ app.get("/urls/:shortURL", (req, res) => {
     };
     res.render("urls_show", templateVars);
   } else {
+    res.sendStatus(403);
     res.redirect("/login");
   }
 });
