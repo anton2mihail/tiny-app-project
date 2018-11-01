@@ -80,12 +80,26 @@ const crud_users = {
     return res;
   },
   isUser(username, password) {
-    let result = '';
+    let result = {
+      username: false,
+      password: false
+    };
+    let resp = false;
     if (db_users[username]) {
-      result = bcrypt.compareSync(password, db_users[username].password);
-      return result;
+      result.username = true;
+      resp = bcrypt.compareSync(password, db_users[username].password);
+      result.password = resp;
     }
-    return false;
+    return result;
+  },
+  isRegisteredUser(username) {
+    let result = {
+      username: false,
+    };
+    if (db_users[username]) {
+      result.username = true;
+    }
+    return result;
   },
   findUser(username) {
     if (db_users[username]) {

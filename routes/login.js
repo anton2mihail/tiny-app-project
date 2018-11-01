@@ -9,12 +9,17 @@ router.get("/", (req, res) => {
   });
 });
 router.post("/", (req, res) => {
-  if (users.isUser(req.body.username, req.body.password)) {
+  let obj = users.isUser(req.body.username, req.body.password)
+  if (obj.username && obj.password) {
     req.session.session_id = createUnique();
     req.session.user_id = req.body.username;
     res.redirect("/urls");
+  } else if (obj.username) {
+    res.send('Sorry Incorrect Password');
+  } else if (obj.password) {
+    res.send('Sorry Incorrect Username');
   } else {
-    res.redirect("/register");
+    res.send('Please Register an account first.')
   }
 });
 

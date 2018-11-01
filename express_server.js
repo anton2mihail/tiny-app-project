@@ -45,7 +45,7 @@ app.get("/urls", (req, res) => {
       publicUrl: PUBLIC_URL
     });
   } else {
-    res.redirect("/login");
+    res.redirect(403, "/login");
   }
 });
 
