@@ -13,7 +13,7 @@
       <p class="card-text">
         <%= shortURL %> ==>
         <%= longURL %>
-        <form class='bstInline' method="POST" action="/urls/<%= shortURL %>">
+        <form class='bstInline' method="POST" action="/urls/<%= shortURL %>?_method=PUT">
           <div class="input-group mb-3">
             <input class='form-control' type='text' name='newURL' value="<%= longURL %>" style="width:auto;">
             </input>

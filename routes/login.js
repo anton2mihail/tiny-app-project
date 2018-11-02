@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { urls, users } = require("../dbs/db_crud");
-const { createUnique } = require('../methods/session_id');
+const { createUnique } = require("../methods/session_id");
 
 router.get("/", (req, res) => {
   res.render("urls_login", {
@@ -9,17 +9,17 @@ router.get("/", (req, res) => {
   });
 });
 router.post("/", (req, res) => {
-  let obj = users.isUser(req.body.username, req.body.password)
+  let obj = users.isUser(req.body.username, req.body.password);
   if (obj.username && obj.password) {
     req.session.session_id = createUnique();
     req.session.user_id = req.body.username;
-    res.redirect("/urls");
+    res.redirect("./urls");
   } else if (obj.username) {
-    res.send('Sorry Incorrect Password');
+    res.send("Sorry Incorrect Password");
   } else if (obj.password) {
-    res.send('Sorry Incorrect Username');
+    res.send("Sorry Incorrect Username");
   } else {
-    res.send('Please Register an account first.')
+    res.send("Please Register an account first.");
   }
 });
 

@@ -22,7 +22,7 @@
             <button class="btn btn-warning bstInline">
               <a style="text-decoration:none;color:white;" href='/urls/<%= el %>'>Edit</a>
             </button>
-            <form class='bstInline' method="POST" action="/urls/<%= el %>/delete">
+            <form class='bstInline' method="POST" action="/urls/<%= el %>?_method=DELETE">
               <button class="btn btn-danger">DELETE</button>
             </form>
           </li>
