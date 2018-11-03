@@ -11,8 +11,17 @@ This is simply a fully functional url shortening serivce, that implements a expr
     "ejs": "^2.6.1",
     "ejs-lint": "^0.3.0",
     "express": "^4.16.4",
-    "express-session": "^1.15.6"
+    "express-session": "^1.15.6",
+    "method-override": "^3.0.0",
+    "body-parser": "^1.18.3"
 ```
+## Getting started
+* Clone this repository into a folder on your machine.
+* Open a terminal and run `npm install` in the terminal to install the dependencies
+
+## Starting Up
+* Now in the same terminal you used to install dependencies, type `npm test` to run the server
+* Edit and play with the code as you wish.
 
 ## Built With
 * Express - Lightweight server framework
