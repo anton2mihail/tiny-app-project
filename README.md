@@ -20,7 +20,8 @@ This is simply a fully functional url shortening serivce, that implements a expr
 * Open a terminal and run `npm install` in the terminal to install the dependencies
 
 ## Starting Up
-* Now in the same terminal you used to install dependencies, type `npm test` to run the server
+* Now in the same terminal you used to install dependencies, type `npm test` to run the server, or alternatively you could run `npm start` if you don't want to play with nodemon.
+* Server should now be running, open your web browser to localhost:5000 and the login page should show up.
 * Edit and play with the code as you wish.
 
 ## Built With
