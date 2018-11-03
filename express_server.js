@@ -1,17 +1,23 @@
 const express = require("express");
 const app = express();
+// Helps with parsing the body of http requests
 const bd = require("body-parser");
+//Makes all cookies session cookies, so that they are destroyed on tab close
 const cookieSession = require("cookie-session");
 const path = require("path");
-const { urls, users } = require("./dbs/db_crud");
+// The register route
 const register = require("./routes/register");
+// Login route
 const login = require("./routes/login");
+// The routes for the urls endpoint
 const url = require("./routes/urls");
+// Allows for the creation of PUT and DELETE event handlers
 const methodOverride = require("method-override");
+// Setup of environment variables
 require("dotenv").config();
+// Route for the use of the short url redirects
 const redirect = require("./routes/short-redirects");
 const PORT = process.env.PORT || 5000; // default port 5000
-const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:" + PORT;
 const COOKIE_KEY = process.env.COOKIE_KEY;
 
 app.use(bd.json());
