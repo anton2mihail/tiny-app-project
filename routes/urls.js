@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  if (req.body.url != "" && !req.session.isChanged) {
+  if (req.body.url != "" && req.session.user_id) {
     urls.create(req.body.url, req.session.user_id);
   }
   res.redirect("./");
