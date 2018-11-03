@@ -144,18 +144,6 @@ const crud_users = {
    *
    *
    * @param {*} username
-   * @returns The user object from the database or false
-   */
-  findUser(username) {
-    if (db_users[username]) {
-      return db_users[username];
-    }
-    return false;
-  },
-  /**
-   *
-   *
-   * @param {*} username
    * @param {*} newUrl
    * @returns BOOLEAN
    *   True || False
