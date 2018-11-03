@@ -6,42 +6,42 @@
 <body>
   <% include ./partials/_nav %>
   <% include ./partials/_header %>
-  <div class="textC">
-    <div class="in-block">
-      <div class="card bstCenter" style="margin-top:5%;">
-        <div class="card-header">
-          Your Urls
-        </div>
-        <ul class="list-group list-group-flush" style="width:30em;">
-          <% if(urls){ %>
-          <% Object.keys(urls).forEach(el =>{ %>
-          <li class="list-group-item">
-            <a href='/go/<%= el %>'>
-              <%= publicUrl+'/go/'+ el %></a> =>
-            <%= urls[el].url %>
-            <button class="btn btn-warning bstInline">
-              <a style="text-decoration:none;color:white;" href='/urls/<%= el %>'>Edit</a>
+  <div class="container">
+    <div class="form">
+
+      Your Urls
+      <ul class="list-group">
+        <% if(urls){ %>
+        <% Object.keys(urls).forEach(el =>{ %>
+        <li class="list-group-item">
+          <a href='/go/<%= el %>'>
+            <%= publicUrl+'/go/'+ el %></a> =>
+          <%= urls[el].url %>
+          <a class="reset inline" href='/urls/<%= el %>'>
+            <button class="btn btn-warning">
+              Edit
             </button>
-            <form class='bstInline' method="POST" action="/urls/<%= el %>?_method=DELETE">
-              <button class="btn btn-danger">DELETE</button>
-            </form>
-          </li>
-          <% }) %>
+          </a>
+          <form class="inline" method="POST" action="/urls/<%= el %>?_method=DELETE">
+            <button class="btn btn-danger">DELETE</button>
+          </form>
+        </li>
+        <% }) %>
+        <% } %>
+        <li class="list-group-item" style="text-align:center;">
+          <% if(username ){ %>
+          <% if(!newUrl){ %>
+          <form method="GET" action="/urls/new">
+            <button type="submit" class="btn btn-info">New URL</button>
+          </form>
+          <% } else if (newUrl == 't') { %>
+          <% include ./partials/_new %>
           <% } %>
-          <li class="list-group-item" style="text-align:center;">
-            <% if(username ){ %>
-            <% if(!newUrl){ %>
-            <form method="GET" action="/urls/new">
-              <button type="submit" class="btn btn-info">New URL</button>
-            </form>
-            <% } else if (newUrl == 't') { %>
-            <% include ./partials/_new %>
-            <% } %>
-            <% } %>
-          </li>
-        </ul>
-      </div>
+          <% } %>
+        </li>
+      </ul>
     </div>
+  </div>
   </div>
 </body>
 

@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
   if (req.body.url != "" && !req.session.isChanged) {
     urls.create(req.body.url, req.session.user_id);
   }
-  res.redirect("./");
+  res.redirect("./urls");
 });
 
 router.get("/new", (req, res) => {
@@ -42,7 +42,7 @@ router.delete("/:shortURL", (req, res) => {
   if (users.hasUrl(req.session.user_id, req.params.shortURL)) {
     users.removeUrl(req.session.user_id, req.params.shortURL);
   }
-  res.redirect("./");
+  res.redirect("./urls");
 });
 
 router.get("/:shortURL", (req, res) => {
@@ -57,13 +57,13 @@ router.get("/:shortURL", (req, res) => {
     };
     res.render("urls_show", templateVars);
   } else {
-    res.redirect("./");
+    res.redirect("./urls");
   }
 });
 
 router.put("/:shortURL", (req, res) => {
   urls.update(req.params.shortURL, req.body.newURL);
-  res.redirect("./");
+  res.redirect("./urls");
 });
 
 module.exports = router;

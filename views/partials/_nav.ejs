@@ -1,15 +1,31 @@
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">TinyApp</a>
-    <ul class="nav navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/urls">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/urls/new">New URL</a>
-      </li>
-    </ul>
-    <form class='marginTop' method='POST' action="/logout">
+<div class="nav">
+  <div class="nav-header">
+    <div class="nav-title">
+      TinyApp
+    </div>
+  </div>
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+  <div class="nav-links">
+    <a href="//github.io/jo_geek" target="_blank">Github</a>
+    <a href="http://stackoverflow.com/users/4084003/" target="_blank">Stackoverflow</a>
+    <form class="dis-initial" method='POST' action="/logout">
+      <sub>Logged In As:
+        <%= username %></sub>
+      <button type="submit" class="btn btn-warning">Logout</button>
+  </div>
+  </form>
+</div>
+</div>
+
+
+<!--
+  <form class='marginTop' method='POST' action="/logout">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Logged in as: </span>
@@ -22,5 +38,4 @@
         </div>
       </div>
     </form>
-  </div>
-</nav>
+-->

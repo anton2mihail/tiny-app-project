@@ -7,23 +7,21 @@
 
   <% include ./partials/_nav %>
 
-  <div class="card showCard">
-    <div class="card-body">
+  <div class="container">
+    <div class="form">
       <h5 class="card-title">Url Chosen</h5>
       <p class="card-text">
         <%= shortURL %> ==>
         <%= longURL %>
-        <form class='bstInline' method="POST" action="/urls/<%= shortURL %>?_method=PUT">
-          <div class="input-group mb-3">
-            <input class='form-control' type='text' name='newURL' value="<%= longURL %>" style="width:auto;">
-            </input>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-warning">Update</button>
-            </div>
+        <form method="POST" action="/urls/<%= shortURL %>?_method=PUT">
+          <div class="group">
+            <input class='widen' type='text' name='newURL' value="<%= longURL %>">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>URL</label>
           </div>
+          <button type="submit" class="btn btn-warning">Update</button>
         </form>
-
-      </p>
     </div>
   </div>
 </body>
