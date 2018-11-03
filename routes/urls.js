@@ -81,6 +81,7 @@ router.get("/:shortURL", (req, res) => {
 
 //Put method for the '/urls/shortURL' endpoint that updates a users url
 router.put("/:shortURL", (req, res) => {
+  // Should only update if the body of the updated url is not empty
   if (req.body.newURL != "") {
     urls.update(req.params.shortURL, req.body.newURL);
   }
