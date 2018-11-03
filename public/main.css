@@ -1,21 +1,29 @@
+body {
+  background-image: url("./images/banner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
 .bstCenter {
   margin: auto;
   margin-top: 5%;
 }
-.max{
+.max {
   width: 25em;
 }
-.cent{
+.cent {
   margin: auto;
   width: fit-content;
   margin-top: 3%;
   margin-bottom: 10px;
 }
-.textC{
+.textC {
   text-align: center;
   margin-top: 4%;
 }
-.in-block{
+.in-block {
   display: inline-block;
 }
 .bstCenterButton {
@@ -24,17 +32,17 @@
 .bstInline {
   display: inline;
 }
-.marginTop{
+.marginTop {
   margin-top: 15px;
 }
 
-.linkReset{
+.linkReset {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
-.showCard{
+.showCard {
   width: fit-content;
-  margin:auto;
-  margin-top:5%;
+  margin: auto;
+  margin-top: 5%;
 }

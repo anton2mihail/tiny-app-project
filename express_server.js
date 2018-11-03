@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
-  res.redirect("/login");
+  res.render("urls_landing");
 });
 app.use("/go", redirect);
 app.use("/register", register);
