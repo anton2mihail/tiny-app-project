@@ -4,10 +4,6 @@ const router = express.Router();
 //These are the database method objects
 const { urls, users } = require("../dbs/db_crud");
 const { createUnique } = require("../methods/session_id");
-// Setting up environment variables
-require("dotenv").config();
-const PORT = process.env.PORT || 5000;
-const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:" + PORT;
 
 // Post method for '/register endpoint'
 router.post("/", (req, res) => {

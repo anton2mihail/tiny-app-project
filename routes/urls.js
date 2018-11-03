@@ -21,7 +21,12 @@ router.get("/", (req, res) => {
       publicUrl: PUBLIC_URL
     });
   } else {
-    res.redirect(403, "./login");
+    res.render("urls_index", {
+      username: undefined,
+      urls: undefined,
+      newUrl: null,
+      publicUrl: PUBLIC_URL
+    });
   }
 });
 
@@ -76,7 +81,9 @@ router.get("/:shortURL", (req, res) => {
 
 //Put method for the '/urls/shortURL' endpoint that updates a users url
 router.put("/:shortURL", (req, res) => {
-  urls.update(req.params.shortURL, req.body.newURL);
+  if (req.body.newURL != "") {
+    urls.update(req.params.shortURL, req.body.newURL);
+  }
   res.redirect("./");
 });
 

@@ -4,8 +4,11 @@
 <% include ./partials/_head %>
 
 <body>
+  <% if (username){ %>
   <% include ./partials/_nav %>
+  <% } %>
   <% include ./partials/_header %>
+  <% if (username){ %>
   <div class="textC">
     <div class="in-block">
       <div class="card bstCenter" style="margin-top:5%;">
@@ -43,6 +46,7 @@
       </div>
     </div>
   </div>
+  <% } %>
 </body>
 
 </html>
