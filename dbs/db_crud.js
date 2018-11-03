@@ -25,15 +25,6 @@ const crud_urls = {
    *
    *
    * @param {*} short
-   * @returns BOOLEAN
-   */
-  isUrl(short) {
-    return !!db_urls[short];
-  },
-  /**
-   *
-   *
-   * @param {*} short
    * @returns Long Url or Undefined
    */
   findUrl(short) {
@@ -59,19 +50,6 @@ const crud_urls = {
   /**
    *
    *
-   * @param {*} short
-   * @returns BOOLEAN
-   */
-  remove(short) {
-    if (db_urls[short]) {
-      delete db_urls[short];
-      return true;
-    }
-    return false;
-  },
-  /**
-   *
-   *
    * @param {*} username
    * @returns Object containing the urls for the user Or Undefined
    */
@@ -88,14 +66,6 @@ const crud_urls = {
       }
     }
     return undefined;
-  },
-  /**
-   *
-   *
-   * @returns All the urls in the database
-   */
-  aldl() {
-    return db_urls;
   }
 };
 
