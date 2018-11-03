@@ -1,5 +1,5 @@
 # Tiny App Project
-This is simply a fully functional url shortening serivce, that implements a express backend, and a uses ejs for templating. It also implements user accounts so that only the user who created the url actually 'owns' the url. This only means that they are the only ones capable of editing them. Anyone can use the urls created by this service, ie. youre free to share them with your friends.
+This is simply a fully functional url shortening serivce, that implements a express backend, and a uses ejs for templating. It also implements user accounts so that only the user who created the url actually 'owns' the url. This means that they are the only ones capable of editing them. Anyone can use the urls created by this service, ie. youre free to share them with your friends.
 
 # NOW LIVE ON HEROKU : [Tiny Url](https://tiny-app-project.herokuapp.com/login)
 
@@ -11,8 +11,17 @@ This is simply a fully functional url shortening serivce, that implements a expr
     "ejs": "^2.6.1",
     "ejs-lint": "^0.3.0",
     "express": "^4.16.4",
-    "express-session": "^1.15.6"
+    "express-session": "^1.15.6",
+    "method-override": "^3.0.0",
+    "body-parser": "^1.18.3"
 ```
+## Getting started
+* Clone this repository into a folder on your machine.
+* Open a terminal and run `npm install` in the terminal to install the dependencies
+
+## Starting Up
+* Now in the same terminal you used to install dependencies, type `npm test` to run the server
+* Edit and play with the code as you wish.
 
 ## Built With
 * Express - Lightweight server framework
