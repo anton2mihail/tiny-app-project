@@ -1,7 +1,6 @@
 const db_urls = require("./data/urls_db.json");
 const db_users = require("./data/urls_users_db.json");
-const bcrypt = require('bcrypt');
-
+const bcrypt = require("bcrypt");
 
 const shortenUrl = url => {
   let encoded = (Math.random() * 1e16).toString(36);
@@ -15,6 +14,12 @@ const crud_urls = {
       url: url
     };
     crud_users.addNewUrl(username, short);
+  },
+  createTemp(url) {
+    const short = shortenUrl(url);
+    db_urls[short] = {
+      url: url
+    };
   },
   isUrl(short) {
     return !!db_urls[short];
@@ -46,7 +51,7 @@ const crud_urls = {
         db_users[username].urls.forEach(el => {
           obj[el] = {
             url: db_urls[el].url
-          }
+          };
         });
         return obj;
       }
@@ -94,7 +99,7 @@ const crud_users = {
   },
   isRegisteredUser(username) {
     let result = {
-      username: false,
+      username: false
     };
     if (db_users[username]) {
       result.username = true;

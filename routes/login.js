@@ -15,11 +15,11 @@ router.post("/", (req, res) => {
     req.session.user_id = req.body.username;
     res.redirect("./urls");
   } else if (obj.username) {
-    res.send("Sorry Incorrect Password");
+    res.send("Sorry Incorrect Password <a href='/login'>Back</a>");
   } else if (obj.password) {
-    res.send("Sorry Incorrect Username");
+    res.send("Sorry Incorrect Username <a href='/login'>Back</a>");
   } else {
-    res.send("Please Register an account first.");
+    res.send("Please Register an account first. <a href='/login'>Back</a>");
   }
 });
 

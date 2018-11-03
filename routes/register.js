@@ -5,6 +5,9 @@ const { createUnique } = require("../methods/session_id");
 const PORT = process.env.PORT || 5000;
 const PUBLIC_URL = process.env.PUBLIC_URL || "http://localhost:" + PORT;
 
+router.get("/", (req, res) => {
+  res.redirect("../login");
+});
 router.post("/", (req, res) => {
   let resp = users.isRegisteredUser(req.body.username);
   if (resp.username) {

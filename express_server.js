@@ -3,7 +3,6 @@ const app = express();
 const bd = require("body-parser");
 const cookieSession = require("cookie-session");
 const path = require("path");
-const { urls, users } = require("./dbs/db_crud");
 const register = require("./routes/register");
 const login = require("./routes/login");
 const url = require("./routes/urls");
@@ -32,9 +31,9 @@ app.get("/", (req, res) => {
   res.render("urls_landing");
 });
 app.use("/go", redirect);
+app.use("/urls", url);
 app.use("/register", register);
 app.use("/login", login);
-app.use("/urls", url);
 
 app.post("/logout", (req, res) => {
   req.session = null;

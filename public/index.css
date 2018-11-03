@@ -11,6 +11,10 @@
   width: 100vw;
   text-align: center;
 }
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 .dis-initial {
   display: initial;
 }
@@ -45,6 +49,7 @@ section {
   transition: color 0.5s ease-in 0s, border-color 0.5s ease-in 0s,
     background-color 0.5s ease-in 0s;
   font-family: "Arvo", serif;
+  cursor: pointer;
 }
 
 .btn-start:hover {
@@ -79,6 +84,12 @@ section {
 .widen {
   width: -webkit-fill-available;
 }
+.purp {
+  color: purple;
+}
+a:visited {
+  color: blue;
+}
 .group {
   position: relative;
   margin: 45px 0;
@@ -112,7 +123,8 @@ textarea:valid ~ label {
 }
 input:focus ~ .bar:before,
 textarea:focus ~ .bar:before {
-  width: 320px;
+  width: -webkit-fill-available;
+  /*320px*/
 }
 input[type="password"] {
   letter-spacing: 0.3em;
@@ -130,7 +142,7 @@ label {
 .bar {
   position: relative;
   display: block;
-  width: 320px;
+  width: -webkit-fill-available;
 }
 .bar:before {
   content: "";
@@ -142,85 +154,38 @@ label {
   transition: 300ms ease all;
   left: 0%;
 }
-
-.nav > .nav-header {
-  display: inline;
+.fa-input {
+  font-family: FontAwesome, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.unstyle {
+  border: none;
 }
 
-.nav > .nav-header > .nav-title {
-  display: inline-block;
-  font-size: 22px;
-  color: #fff;
-  padding: 10px 10px 10px 10px;
+.nav {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.login-logout {
+  margin-left: auto;
+  margin-right: 2px;
+}
+.shrink {
+  font-size: 25px;
+  padding-bottom: 4px;
 }
 
-.nav > .nav-btn {
-  display: none;
+.align {
+  align-self: center;
 }
-
-.nav > .nav-links {
-  display: inline;
-  float: right;
-  font-size: 18px;
+.pad-left {
+  padding-left: 10px;
 }
-
-.nav > .nav-links > a {
-  display: inline-block;
-  padding: 13px 10px 13px 10px;
-  text-decoration: none;
-  color: #efefef;
+.mb0 {
+  margin-bottom: 0;
 }
-
-.nav > .nav-links > a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.nav > #nav-check {
-  display: none;
-}
-
-@media (max-width: 600px) {
-  .nav > .nav-btn {
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-  }
-  .nav > .nav-btn > label {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    padding: 13px;
-  }
-  .nav > .nav-btn > label:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-  .nav > .nav-btn > label > span {
-    display: block;
-    width: 25px;
-    height: 10px;
-    border-top: 2px solid #eee;
-  }
-  .nav > .nav-links {
-    position: absolute;
-    display: block;
-    width: 100%;
-    background-color: #333;
-    height: 0px;
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
-    top: 50px;
-    left: 0px;
-  }
-  .nav > .nav-links > a {
-    display: block;
-    width: 100%;
-  }
-  .nav > #nav-check:not(:checked) + .nav-links {
-    height: 0px;
-  }
-  .nav > #nav-check:checked + .nav-links {
-    height: calc(100vh - 50px);
-    overflow-y: auto;
-  }
+.init {
+  display: initial;
 }

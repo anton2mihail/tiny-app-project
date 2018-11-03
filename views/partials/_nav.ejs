@@ -1,41 +1,46 @@
-<div class="nav">
-  <div class="nav-header">
-    <div class="nav-title">
-      TinyApp
-    </div>
-  </div>
-  <div class="nav-btn">
-    <label for="nav-check">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-  </div>
-  <div class="nav-links">
-    <a href="//github.io/jo_geek" target="_blank">Github</a>
-    <a href="http://stackoverflow.com/users/4084003/" target="_blank">Stackoverflow</a>
+<ul class="nav" role="navigation">
+  <li>
+    <a class="reset" href="/">
+      <h1 class="shrink purp">
+        TinyApp
+      </h1>
+    </a>
+  </li>
+  <li class="align pad-left">
+    <form class="mb0" action="/urls" method="get">
+      <button type="submit" class="btn btn-start fa-input">
+        <i class="fas fa-home"></i>
+        Home
+      </button>
+    </form>
+  </li>
+  <% if(username){ %>
+  <li class="login-logout align">
     <form class="dis-initial" method='POST' action="/logout">
       <sub>Logged In As:
         <%= username %></sub>
-      <button type="submit" class="btn btn-warning">Logout</button>
-  </div>
-  </form>
-</div>
-</div>
-
-
-<!--
-  <form class='marginTop' method='POST' action="/logout">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Logged in as: </span>
-        </div>
-        <div class="form-control">
-          <%= username %>
-        </div>
-        <div class="input-group-append">
-          <button type="submit" class="btn btn-warning bstInline">Logout</button>
-        </div>
-      </div>
+      <button class="btn btn-warning fa-input" type="submit">
+        <i class="fas fa-sign-out-alt">
+        </i>Logout
+      </button>
     </form>
--->
+  </li>
+  <% }else{ %>
+  <li class="login-logout align">
+    <form class="dis-initial" method='GET' action="/login">
+      <button class="btn btn-success fa-input" type="submit">
+        <i class="fas fa-sign-in-alt"></i>
+        Sign In
+      </button>
+    </form>
+  </li>
+  <li class="align">
+    <form class="dis-initial" method='GET' action="/register">
+      <button class="btn btn-info fa-input" type="submit">
+        <i class="fas fa-user-plus"></i>
+        Sign Up
+      </button>
+    </form>
+  </li>
+  <% } %>
+</ul>
