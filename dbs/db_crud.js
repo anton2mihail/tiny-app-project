@@ -8,6 +8,12 @@ const shortenUrl = url => {
 };
 
 const crud_urls = {
+  /**
+   *
+   *
+   * @param {*} url
+   * @param {*} username
+   */
   create(url, username) {
     const short = shortenUrl(url);
     db_urls[short] = {
@@ -15,15 +21,34 @@ const crud_urls = {
     };
     crud_users.addNewUrl(username, short);
   },
+  /**
+   *
+   *
+   * @param {*} short
+   * @returns BOOLEAN
+   */
   isUrl(short) {
     return !!db_urls[short];
   },
+  /**
+   *
+   *
+   * @param {*} short
+   * @returns Long Url or Undefined
+   */
   findUrl(short) {
     if (db_urls[short]) {
       return db_urls[short].url;
     }
     return undefined;
   },
+  /**
+   *
+   *
+   * @param {*} short
+   * @param {*} newUrl
+   * @returns BOOLEAN
+   */
   update(short, newUrl) {
     if (db_urls[short]) {
       db_urls[short].url = newUrl;
@@ -31,6 +56,12 @@ const crud_urls = {
     }
     return false;
   },
+  /**
+   *
+   *
+   * @param {*} short
+   * @returns BOOLEAN
+   */
   remove(short) {
     if (db_urls[short]) {
       delete db_urls[short];
@@ -38,6 +69,12 @@ const crud_urls = {
     }
     return false;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @returns Object containing the urls for the user Or Undefined
+   */
   getUrlsPerUser(username) {
     let obj = {};
     if (db_users[username]) {
@@ -52,12 +89,24 @@ const crud_urls = {
     }
     return undefined;
   },
-  all() {
+  /**
+   *
+   *
+   * @returns All the urls in the database
+   */
+  aldl() {
     return db_urls;
   }
 };
 
 const crud_users = {
+  /**
+   *
+   *
+   * @param {*} username
+   * @param {*} password
+   * @returns True
+   */
   create(username, password) {
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
@@ -67,6 +116,13 @@ const crud_users = {
     };
     return true;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @param {*} short
+   * @returns res | BOOLEAN
+   */
   hasUrl(username, short) {
     let res = false;
     if (db_users[username]) {
@@ -78,6 +134,14 @@ const crud_users = {
     }
     return res;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @param {*} password
+   * @returns result
+   *    with two params containing BOOLEAN values, representing the validity of the provided params
+   */
   isUser(username, password) {
     let result = {
       username: false,
@@ -90,6 +154,13 @@ const crud_users = {
     }
     return result;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @returns result
+   *      Containing a property that is a BOOLEAN representing the validity of the params
+   */
   isRegisteredUser(username) {
     let result = {
       username: false
@@ -99,12 +170,26 @@ const crud_users = {
     }
     return result;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @returns The user object from the database or false
+   */
   findUser(username) {
     if (db_users[username]) {
       return db_users[username];
     }
     return false;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @param {*} newUrl
+   * @returns BOOLEAN
+   *   True || False
+   */
   addNewUrl(username, newUrl) {
     if (db_users[username]) {
       db_users[username].urls.push(newUrl);
@@ -112,6 +197,14 @@ const crud_users = {
     }
     return false;
   },
+  /**
+   *
+   *
+   * @param {*} username
+   * @param {*} url
+   * @returns BOOLEAN
+   *   True || False
+   */
   removeUrl(username, url) {
     if (db_users[username].urls.includes(url)) {
       let idx = db_users[username].urls.indexOf(url);
