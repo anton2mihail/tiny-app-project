@@ -18,7 +18,7 @@ require("dotenv").config();
 // Route for the use of the short url redirects
 const redirect = require("./routes/short-redirects");
 const PORT = process.env.PORT || 5000; // default port 5000
-const COOKIE_KEY = process.env.COOKIE_KEY;
+const COOKIE_KEY = process.env.COOKIE_KEY || 'Key Random';
 
 app.use(bd.json());
 app.use(bd.urlencoded({ extended: true }));
