@@ -15,6 +15,12 @@ This is simply a fully functional url shortening serivce, that implements a expr
     "method-override": "^3.0.0",
     "body-parser": "^1.18.3"
 ```
+Also reccomended is a .env file here is a template
+```json
+PUBLIC_URL=http://URLTOYOURSITE.com
+COOKIE_KEY=Thestringbywhichtoencryptyourkey
+PORT=portWHERETHESERVERSHOULDLISTEN
+```
 
 ## Getting started
 
